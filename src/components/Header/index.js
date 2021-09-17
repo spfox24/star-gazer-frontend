@@ -12,7 +12,9 @@ function Header () {
                 <img className={styles.logo} src={nasa} alt="Nasa" />
             </a>
         </div>
+
         <h1 className={styles.title}>STAR GAZER</h1>
+        
     </header>
     )
 }

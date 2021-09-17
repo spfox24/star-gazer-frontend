@@ -86,10 +86,12 @@ function PictureCard(props) {
         <ThemeProvider theme={cardTheme}>
             <Card sx={{ maxWidth: 450, bgcolor: "primary.main", color: "white" }}>
                 <ThemeProvider theme={headingFont}>
+
                     <CardHeader
                         title={props.picture.title}
                         subheader={<Typography className="subHeader">{props.picture.date}</Typography>}
                     />
+
                 </ThemeProvider>
                 <CardMedia 
                     component="img"
@@ -98,6 +100,7 @@ function PictureCard(props) {
                     alt={props.picture.title}
                 />
                 <CardActions disableSpacing>
+
                     <IconButton aria-label="Add to Favorites">
                         <FavoriteIcon 
                             onClick={handleLikeClick}
@@ -106,6 +109,7 @@ function PictureCard(props) {
                             color={like ? "primary" : "secondary" }
                         />
                     </IconButton>
+
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
@@ -116,13 +120,16 @@ function PictureCard(props) {
                             sx={{ color: "white"}}
                         />
                     </ExpandMore>
+
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <ThemeProvider theme={typoFont}>
                         <CardContent>
+
                             <Typography variant="body1">
                                 {props.picture.explanation}
                             </Typography>
+                            
                         </CardContent>
                     </ThemeProvider>
                 </Collapse>

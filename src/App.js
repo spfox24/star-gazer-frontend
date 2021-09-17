@@ -50,7 +50,9 @@ function App() {
       <Header />
           <main className="main">
             <div className="buttonContainer">
+
               <h1 className="buttonHeading">Shuffle Images</h1>
+
               <KeyboardArrowDownIcon 
                 sx={{ color: "#ffffff", fontSize: 40, marginBottom: 1 }}
               />
@@ -58,7 +60,7 @@ function App() {
                 size="large" 
                 color="primary" 
                 sx={{ width: '70%' }}
-                aria-label="Reload Picture" 
+                aria-label="Reload Pictures" 
                 variant="contained" 
                 onClick={refreshPage}>
                 <PhotoCamera />
@@ -76,11 +78,13 @@ function App() {
               <a href="https://github.com/spfox24" target="_blank" rel="noreferer">
                 <GitHubIcon 
                   sx={{ color: "#ffffff", fontSize: 45, margin: 3 }}
+                  aria-label="GitHub" 
                 />
               </a>
               <a href="https://www.linkedin.com/in/stevenpfox/" target="_blank" rel="noreferer">
                 <LinkedInIcon 
                   sx={{ color: "#ffffff", fontSize: 45, margin: 3 }}
+                  aria-label="LinkedIn" 
                 />
               </a>
             </div>

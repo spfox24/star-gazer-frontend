@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
 const theme = createTheme({
@@ -49,7 +50,17 @@ function App() {
       <Header />
           <main className="main">
             <div className="buttonContainer">
-              <Button theme={theme} size="large" color="primary" aria-label="Reload Picture" variant="contained" onClick={refreshPage}>
+              <h1 className="buttonHeading">Shuffle Images</h1>
+              <KeyboardArrowDownIcon 
+                sx={{ color: "#ffffff", fontSize: 40, marginBottom: 1 }}
+              />
+              <Button theme={theme} 
+                size="large" 
+                color="primary" 
+                sx={{ width: '70%' }}
+                aria-label="Reload Picture" 
+                variant="contained" 
+                onClick={refreshPage}>
                 <PhotoCamera />
               </Button>
             </div>

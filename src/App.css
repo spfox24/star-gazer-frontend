@@ -1,14 +1,31 @@
 .App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  position: relative;
+  background: #0f0f0d;
+  font-family: 'Economica', sans-serif;
+}
+
+.App main {
+  flex-grow: 1;
+}
+
+.main {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.buttonContainer {
+  padding: 1rem;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: 2rem;
 }

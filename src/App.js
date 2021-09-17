@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { fetchApodData } from './services/nasaService';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import PictureCard from './components/PictureCard';
-import './App.css';
+import styles from './App.css';
 import Button from '@mui/material/Button';
 
 function App() {
@@ -25,22 +27,21 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>STAR GAZER</h1>
-      </header>
-      <main>
-        <div>
-          <Button variant="contained" onClick={refreshPage}>Image Reload</Button>
-        </div>
-        <div>
-          {apodData.data.map((picture, idx) =>
-          <PictureCard 
-          key={idx}
-          picture={picture}
-          />
-          )}
-        </div>
-      </main>
+      <Header />
+          <main className="main">
+            <div className="buttonContainer">
+              <Button variant="contained" onClick={refreshPage}>Image Reload</Button>
+            </div>
+            <div className="cardContainer">
+              {apodData.data.map((picture, idx) =>
+              <PictureCard 
+              key={idx}
+              picture={picture}
+              />
+              )}
+            </div>
+          </main>
+      <Footer />
     </div>
   );
 }

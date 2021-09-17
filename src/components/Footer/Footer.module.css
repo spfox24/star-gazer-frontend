@@ -1,0 +1,12 @@
+.footer {
+  padding: 4rem 0 2rem 0;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: url('../../assets/space9.jpg');
+  background-position: center;
+  background-size: cover;
+  background-position-y: 90rem;
+  }

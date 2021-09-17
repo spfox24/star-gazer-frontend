@@ -1,0 +1,30 @@
+.header {
+    height: 120px;
+    width: 100%;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    background: url('../../assets/space5.jpg');
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    z-index: 999;
+  }
+
+  .logoContainer {
+    height: 120px;
+    display: flex;
+    margin-left: 2rem;
+  }
+
+  .logo {
+    height: 120px;
+  }
+
+  .title {
+    padding-right: 2rem;
+    font-family: 'Russo One', sans-serif;
+    text-shadow: 3px 4px 8px rgb(107, 105, 105);
+  }

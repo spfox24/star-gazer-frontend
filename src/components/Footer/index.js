@@ -1,9 +1,10 @@
-import styles from './Footer.module.css'
+import styles from './Footer.module.css';
+
 
 function Footer () {
     return (
     <footer className={styles.footer}>
-        <p>&copy; Star Gazer All Rights Reserved {new Date().getFullYear()}</p>
+        <p className={styles.rights}>&copy; Star Gazer by Steven Fox All Rights Reserved {new Date().getFullYear()}</p>
     </footer>
     );
 };

@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import './PictureCard.module.css';
 
 // MUI import
-import { styled } from '@mui/material/styles';
+import { ThemeProvider, styled } from '@mui/material/styles';
 
 // MUI card styles
 import Card from '@mui/material/Card';
@@ -19,12 +20,43 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#9e9e9e'
+            main: '#ffffff'
         },
         secondary: {
-            main: '#f44336'
+            main: '#e54f34'
         },
     },
+});
+
+const cardTheme = createTheme({
+    palette: {
+        primary: {
+            main: '#1d3e8c'
+        },
+        secondary: {
+            main: '#e54f34'
+        },
+    }
+});
+
+const headingFont = createTheme({
+    typography: {
+        fontFamily: [
+            'Russo One', 
+            'sans-serif',
+        ].join(','),
+    },
+});
+
+const typoFont = createTheme({
+    typography: {
+        fontFamily: [
+            'Economica', 
+            'sans-serif',
+        ].join(','),
+        fontSize: 18,
+        color: '#ffffff',
+    }
 });
 
 const ExpandMore = styled((props) => {
@@ -51,43 +83,51 @@ function PictureCard(props) {
     };
 
     return (
-        <Card sx={{ maxWidth: 450 }}>
-            <CardHeader
-                title={props.picture.title}
-                subheader={props.picture.date}
-            />
-            <CardMedia 
-                component="img"
-                height="350"
-                image={props.picture.url}
-                alt={props.picture.title}
-            />
-            <CardActions disableSpacing>
-                <IconButton aria-label="Add to Favorites">
-                    <FavoriteIcon 
-                        onClick={handleLikeClick}
-                        variant="contained"
-                        theme={theme}
-                        color={like ? "primary" : "secondary" }
+        <ThemeProvider theme={cardTheme}>
+            <Card sx={{ maxWidth: 450, bgcolor: "primary.main", color: "white" }}>
+                <ThemeProvider theme={headingFont}>
+                    <CardHeader
+                        title={props.picture.title}
+                        subheader={<Typography className="subHeader">{props.picture.date}</Typography>}
                     />
-                </IconButton>
-                <ExpandMore
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </ExpandMore>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                        {props.picture.explanation}
-                    </Typography>
-                </CardContent>
-            </Collapse>
-        </Card>
+                </ThemeProvider>
+                <CardMedia 
+                    component="img"
+                    height="350"
+                    image={props.picture.url}
+                    alt={props.picture.title}
+                />
+                <CardActions disableSpacing>
+                    <IconButton aria-label="Add to Favorites">
+                        <FavoriteIcon 
+                            onClick={handleLikeClick}
+                            variant="contained"
+                            theme={theme}
+                            color={like ? "primary" : "secondary" }
+                        />
+                    </IconButton>
+                    <ExpandMore
+                        expand={expanded}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMoreIcon 
+                            sx={{ color: "white"}}
+                        />
+                    </ExpandMore>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <ThemeProvider theme={typoFont}>
+                        <CardContent>
+                            <Typography variant="body1">
+                                {props.picture.explanation}
+                            </Typography>
+                        </CardContent>
+                    </ThemeProvider>
+                </Collapse>
+            </Card>
+        </ThemeProvider>
     );
 };
 

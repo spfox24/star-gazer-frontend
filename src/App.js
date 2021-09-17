@@ -1,10 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { fetchApodData } from './services/nasaService';
+// components
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PictureCard from './components/PictureCard';
-import styles from './App.css';
+// styles
+import './App.css';
+// material ui
+import { createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
+
+const theme = createTheme({
+  palette: {
+      primary: {
+          main: '#1d3e8c'
+      },
+      secondary: {
+          main: '#f44336'
+      },
+  },
+});
 
 function App() {
 
@@ -30,15 +49,29 @@ function App() {
       <Header />
           <main className="main">
             <div className="buttonContainer">
-              <Button variant="contained" onClick={refreshPage}>Image Reload</Button>
+              <Button theme={theme} size="large" color="primary" aria-label="Reload Picture" variant="contained" onClick={refreshPage}>
+                <PhotoCamera />
+              </Button>
             </div>
-            <div className="cardContainer">
-              {apodData.data.map((picture, idx) =>
-              <PictureCard 
-              key={idx}
-              picture={picture}
-              />
-              )}
+              <div className="cardContainer">
+                {apodData.data.map((picture, idx) =>
+                <PictureCard 
+                key={idx}
+                picture={picture}
+                />
+                )}
+              </div>
+            <div className="socialIcon">
+              <a href="https://github.com/spfox24" target="_blank" rel="noreferer">
+                <GitHubIcon 
+                  sx={{ color: "#ffffff", fontSize: 45, margin: 3 }}
+                />
+              </a>
+              <a href="https://www.linkedin.com/in/stevenpfox/" target="_blank" rel="noreferer">
+                <LinkedInIcon 
+                  sx={{ color: "#ffffff", fontSize: 45, margin: 3 }}
+                />
+              </a>
             </div>
           </main>
       <Footer />

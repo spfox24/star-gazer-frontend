@@ -1,0 +1,15 @@
+.modalTitle {
+    background: #ffffff;
+    color: #1d3e8c;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalImg {
+    height: 60px;
+}
+
+.modalContent {
+    background: #1d3e8c;
+    color: #ffffff;
+}

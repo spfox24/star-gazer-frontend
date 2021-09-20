@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import './PictureCard.module.css';
+import PropTypes from 'prop-types';
+
+import nasa from '../../assets/nasa.png';
+import styles from './PictureCard.module.css';
 
 // MUI import
 import { ThemeProvider, styled } from '@mui/material/styles';
@@ -8,14 +11,17 @@ import { ThemeProvider, styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { createTheme } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+// MODAL
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import CloseIcon from '@mui/icons-material/Close';
 
 const theme = createTheme({
     palette: {
@@ -59,23 +65,54 @@ const typoFont = createTheme({
     }
 });
 
-const ExpandMore = styled((props) => {
-    const {expand, ...other } = props;
-    return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+    '& .MuDialogContent-root': {
+        padding: theme.spacing(2),
+    },
+    '& .MuDialogActions-root': {
+        padding: theme.spacing(1),
+    },
 }));
 
+const BootstrapDialogTitle = (props) => {
+    const { children, onClose, ...other } = props;
+    
+    return (
+        <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+            {children}
+            {onClose ? (
+                <IconButton
+                    aria-label="close"
+                    onClick={onClose}
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        color: (theme) => theme.palette.grey[500],
+                    }}
+                >
+                    <CloseIcon />
+                </IconButton>
+            ) : null}
+        </DialogTitle>
+    );
+};
+
+BootstrapDialogTitle.propTypes = {
+    children: PropTypes.node,
+    onClose: PropTypes.func.isRequired,
+};
+
 function PictureCard(props) {
-    const [expanded, setExpanded] = useState(false);
+
+    const [open, setOpen] = useState(false);
     const [like, setLike] = useState(true);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
     };
 
     const handleLikeClick = () => {
@@ -99,7 +136,7 @@ function PictureCard(props) {
                     image={props.picture.url}
                     alt={props.picture.title}
                 />
-                <CardActions disableSpacing>
+                <CardActions disableSpacing sx={{ justifyContent: 'space-between' }}>
 
                     <IconButton aria-label="Add to Favorites" onClick={handleLikeClick}>
                         <FavoriteIcon 
@@ -109,29 +146,42 @@ function PictureCard(props) {
                         />
                     </IconButton>
 
-                    <ExpandMore
-                        expand={expanded}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
+                    <IconButton
+                        onClick={handleClickOpen}
                         aria-label="show more"
                     >
                         <ExpandMoreIcon 
                             sx={{ color: "white"}}
                         />
-                    </ExpandMore>
+                    </IconButton>
 
                 </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <ThemeProvider theme={typoFont}>
-                        <CardContent>
 
-                            <Typography variant="body1">
-                                {props.picture.explanation}
-                            </Typography>
-                            
-                        </CardContent>
+                    <ThemeProvider theme={typoFont}>
+                        <BootstrapDialog
+                            onClose={handleClose}
+                            aria-labelledby={props.picture.title}
+                            open={open}
+                        >
+                            <ThemeProvider theme={headingFont}>
+                                <BootstrapDialogTitle className={styles.modalTitle} id={props.picture.title} onClose={handleClose}>
+                                    {props.picture.title}
+                                    <img 
+                                        src={nasa}
+                                        className={styles.modalImg}
+                                        alt={props.picture.title}
+                                    />
+                                </BootstrapDialogTitle>
+                            </ThemeProvider>
+
+                            <DialogContent className={styles.modalContent} dividers>
+                                <Typography gutterBottom>
+                                    {props.picture.explanation}
+                                </Typography>
+                            </DialogContent>
+                        </BootstrapDialog>
                     </ThemeProvider>
-                </Collapse>
+
             </Card>
         </ThemeProvider>
     );

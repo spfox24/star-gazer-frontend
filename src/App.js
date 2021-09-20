@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchApodData } from './services/nasaService';
 // components
 import Header from './components/Header';
@@ -75,13 +75,13 @@ function App() {
                 )}
               </div>
             <div className="socialIcon">
-              <a href="https://github.com/spfox24" target="_blank" rel="noreferer">
+              <a href="https://github.com/spfox24" target="_blank" rel="noreferrer">
                 <GitHubIcon 
                   sx={{ color: "#ffffff", fontSize: 45, margin: 3 }}
                   aria-label="GitHub" 
                 />
               </a>
-              <a href="https://www.linkedin.com/in/stevenpfox/" target="_blank" rel="noreferer">
+              <a href="https://www.linkedin.com/in/stevenpfox/" target="_blank" rel="noreferrer">
                 <LinkedInIcon 
                   sx={{ color: "#ffffff", fontSize: 45, margin: 3 }}
                   aria-label="LinkedIn" 

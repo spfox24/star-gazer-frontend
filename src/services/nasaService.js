@@ -1,9 +1,7 @@
-const BASE_URL = 'https://nasa-star-gazer.herokuapp.com/api';
+const BASE_URL = 'https://nasa-star-gazer.herokuapp.com';
 
 function fetchApodData() {
-    let url;
-    url = BASE_URL
-    return fetch(url).then(res => res.json());
+    return fetch(BASE_URL).then(res => res.json());
 };
 
 export {

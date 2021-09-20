@@ -101,9 +101,8 @@ function PictureCard(props) {
                 />
                 <CardActions disableSpacing>
 
-                    <IconButton aria-label="Add to Favorites">
+                    <IconButton aria-label="Add to Favorites" onClick={handleLikeClick}>
                         <FavoriteIcon 
-                            onClick={handleLikeClick}
                             variant="contained"
                             theme={theme}
                             color={like ? "primary" : "secondary" }
